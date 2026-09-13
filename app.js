@@ -97,6 +97,7 @@ function showScreen(name) {
   if (name === 'list') renderListScreen();
   if (name === 'assets') renderAssetsScreen();
   if (name === 'report') renderReportScreen();
+  if (name === 'calendar') renderCalendarScreen();
 }
 
 tabButtons.forEach(btn => {
