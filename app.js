@@ -19,9 +19,9 @@ const DEFAULT_CATEGORIES = [
 ];
 
 const CATEGORY_COLORS = [
-  '#B5482A', '#4B6E4E', '#C9A15C', '#6E5A8C',
-  '#3F7C8A', '#B5763C', '#8C5A6E', '#5C7A3F',
-  '#A24E6E', '#4A6E8C',
+  '#E8722C', '#2F8F5E', '#F2A65A', '#3AA179',
+  '#C9591E', '#6FA98A', '#EDA65C', '#1F6E4A',
+  '#D97F3D', '#4C8C6B',
 ];
 
 function loadData() {
@@ -505,15 +505,15 @@ function renderAssetChart() {
         {
           label: '総資産',
           data: sorted.map(a => a.nisa + a.ideco),
-          borderColor: '#4B6E4E',
-          backgroundColor: 'rgba(75,110,78,0.12)',
+          borderColor: '#2F8F5E',
+          backgroundColor: 'rgba(47,143,94,0.12)',
           fill: true,
           tension: 0.25,
         },
         {
           label: '積立NISA',
           data: sorted.map(a => a.nisa),
-          borderColor: '#B5482A',
+          borderColor: '#E8722C',
           backgroundColor: 'transparent',
           borderDash: [4, 3],
           tension: 0.25,
@@ -521,7 +521,7 @@ function renderAssetChart() {
         {
           label: 'iDeCo',
           data: sorted.map(a => a.ideco),
-          borderColor: '#C9A15C',
+          borderColor: '#3AA179',
           backgroundColor: 'transparent',
           borderDash: [4, 3],
           tension: 0.25,
