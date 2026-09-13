@@ -1,0 +1,19 @@
+{
+  "name": "家計ノート",
+  "short_name": "家計ノート",
+  "description": "支出・収入・投資資産(積立NISA / iDeCo)をまとめて記録できる家計簿アプリ",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F3E8D0",
+  "theme_color": "#F3E8D0",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

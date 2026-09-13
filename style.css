@@ -1,0 +1,561 @@
+/*
+  家計ノート — デザイントークン
+  背景: 和紙のような温かいベージュ  #F3E8D0
+  紙面: わずかに明るいカード面     #FBF4E3
+  墨色: 見出し・本文の濃紺         #2C2A26
+  朱色: 支出・強調(はんこの朱)     #B5482A
+  松葉: 収入・資産(良い数字)       #4B6E4E
+  金線: 罫線・仕切り               #C9A15C
+*/
+
+:root {
+  --paper: #F3E8D0;
+  --card: #FBF4E3;
+  --card-line: #E4D5AE;
+  --ink: #2C2A26;
+  --ink-soft: #6B6154;
+  --vermilion: #B5482A;
+  --vermilion-soft: #F1DCCE;
+  --pine: #4B6E4E;
+  --pine-soft: #DCE7D7;
+  --gold-line: #C9A15C;
+  --shadow: 0 2px 10px rgba(44, 42, 38, 0.08);
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Shippori Mincho", serif;
+  margin: 0;
+  color: var(--ink);
+}
+
+button, input, select {
+  font-family: inherit;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 39px,
+      rgba(201, 161, 92, 0.14) 40px
+    ),
+    var(--paper);
+}
+
+/* ---------- ヘッダー ---------- */
+.app-header {
+  padding: 20px 20px 16px;
+  border-bottom: 2px solid var(--gold-line);
+  background: var(--paper);
+}
+
+.app-header__title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.app-header__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--vermilion);
+  color: #fff;
+  font-size: 15px;
+  font-family: "Shippori Mincho", serif;
+  flex-shrink: 0;
+}
+
+.app-header__title h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.app-header__summary {
+  display: flex;
+  gap: 24px;
+  margin-top: 14px;
+}
+
+.app-header__label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
+}
+
+.app-header__balance {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--vermilion);
+}
+
+.app-header__balance--assets {
+  color: var(--pine);
+}
+
+/* ---------- 画面切り替え ---------- */
+.screens {
+  flex: 1;
+  padding: 20px 20px 100px;
+}
+
+.screen { display: none; }
+.screen.active { display: block; animation: fadein 0.18s ease-out; }
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.screen-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.screen-head h2 {
+  font-size: 1.1rem;
+}
+
+.section-sub-title {
+  font-size: 1rem;
+  margin: 28px 0 12px;
+}
+
+/* ---------- フォーム ---------- */
+.ledger-form {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.type-toggle {
+  display: flex;
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.type-toggle__btn {
+  flex: 1;
+  padding: 9px 0;
+  background: transparent;
+  border: none;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.type-toggle__btn.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.field {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.field__label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.field input[type="text"],
+.field input[type="number"],
+.field input[type="date"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  background: #fff;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.field input:focus,
+.type-toggle__btn:focus-visible,
+.tabbar__btn:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--vermilion);
+  outline-offset: 1px;
+}
+
+.field__amount {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  background: #fff;
+  padding: 0 12px;
+}
+
+.field__yen {
+  color: var(--ink-soft);
+  margin-right: 4px;
+}
+
+.field__amount input {
+  border: none !important;
+  padding: 10px 0 !important;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.chip {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--card-line);
+  background: #fff;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.chip.is-selected {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.link-btn {
+  border: none;
+  background: none;
+  color: var(--vermilion);
+  font-size: 0.84rem;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn {
+  flex: 1;
+  padding: 11px 0;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--vermilion);
+  color: #fff;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--card-line);
+  color: var(--ink-soft);
+}
+
+/* ---------- 一覧・帳簿リスト ---------- */
+.month-select {
+  padding: 7px 10px;
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.month-summary {
+  display: flex;
+  justify-content: space-between;
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.month-summary div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.month-summary strong {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.ledger-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ledger-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--card-line);
+}
+
+.ledger-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.ledger-item__cat {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+}
+
+.ledger-item__memo {
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 46vw;
+}
+
+.ledger-item__date {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+}
+
+.ledger-item__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ledger-item__amount {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.ledger-item__amount.is-expense { color: var(--vermilion); }
+.ledger-item__amount.is-income { color: var(--pine); }
+
+.icon-btn {
+  border: none;
+  background: none;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.empty-note {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  padding: 30px 0;
+}
+
+/* ---------- 資産画面 ---------- */
+.asset-total-card {
+  background: var(--pine-soft);
+  border: 1px solid var(--pine);
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.asset-total-card__label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.asset-total-card__value {
+  display: block;
+  font-family: "Shippori Mincho", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--pine);
+  margin-bottom: 10px;
+}
+
+.asset-total-card__breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.asset-total-card__breakdown strong {
+  color: var(--ink);
+}
+
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin-top: 16px;
+}
+
+/* ---------- レポート画面 ---------- */
+.category-breakdown {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.category-breakdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 0.88rem;
+}
+
+.category-breakdown .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.category-breakdown .cb-name { flex: 1; }
+.category-breakdown .cb-amount { font-family: "Shippori Mincho", serif; font-weight: 700; }
+
+/* ---------- タブバー ---------- */
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  background: var(--card);
+  border-top: 2px solid var(--gold-line);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tabbar__btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 0 8px;
+  border: none;
+  background: none;
+  color: var(--ink-soft);
+  font-size: 0.68rem;
+  cursor: pointer;
+}
+
+.tabbar__icon {
+  font-size: 1.1rem;
+}
+
+.tabbar__btn.is-active {
+  color: var(--vermilion);
+}
+
+/* ---------- モーダル ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 42, 38, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal__panel {
+  width: 100%;
+  max-width: 480px;
+  background: var(--paper);
+  border-radius: 16px 16px 0 0;
+  padding: 22px 20px calc(22px + env(safe-area-inset-bottom));
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal__panel h3 {
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+}
+
+.modal__manage {
+  margin-top: 20px;
+  border-top: 1px solid var(--card-line);
+  padding-top: 14px;
+}
+
+.modal__manage h4 {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.category-manage-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.category-manage-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--card-line);
+}
+
+@media (min-width: 480px) {
+  .app { border-left: 1px solid var(--card-line); border-right: 1px solid var(--card-line); }
+}
