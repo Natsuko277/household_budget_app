@@ -514,6 +514,10 @@ button, input, select {
   z-index: 50;
 }
 
+.modal[hidden] {
+  display: none;
+}
+
 .modal__panel {
   width: 100%;
   max-width: 480px;
