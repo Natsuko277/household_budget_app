@@ -563,3 +563,4 @@ button, input, select {
 @media (min-width: 480px) {
   .app { border-left: 1px solid var(--card-line); border-right: 1px solid var(--card-line); }
 }
+
