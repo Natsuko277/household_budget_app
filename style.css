@@ -1,25 +1,25 @@
 /*
-  家計ノート — デザイントークン
-  背景: 和紙のような温かいベージュ  #F3E8D0
-  紙面: わずかに明るいカード面     #FBF4E3
-  墨色: 見出し・本文の濃紺         #2C2A26
-  朱色: 支出・強調(はんこの朱)     #B5482A
-  松葉: 収入・資産(良い数字)       #4B6E4E
-  金線: 罫線・仕切り               #C9A15C
+  家計ノート — デザイントークン(オレンジ×グリーン)
+  背景: 温かみのあるオフホワイト     #FAF6EF
+  紙面: 白に近いカード面            #FFFDF9
+  墨色: 見出し・本文の深緑がかった黒 #23302A
+  橙色: 支出・アクセント            #E8722C
+  緑色: 収入・資産(良い数字)        #2F8F5E
+  縁線: 淡いウォームグレー          #E7E0D2
 */
 
 :root {
-  --paper: #F3E8D0;
-  --card: #FBF4E3;
-  --card-line: #E4D5AE;
-  --ink: #2C2A26;
-  --ink-soft: #6B6154;
-  --vermilion: #B5482A;
-  --vermilion-soft: #F1DCCE;
-  --pine: #4B6E4E;
-  --pine-soft: #DCE7D7;
-  --gold-line: #C9A15C;
-  --shadow: 0 2px 10px rgba(44, 42, 38, 0.08);
+  --paper: #FAF6EF;
+  --card: #FFFDF9;
+  --card-line: #E7E0D2;
+  --ink: #23302A;
+  --ink-soft: #6E7A72;
+  --orange: #E8722C;
+  --orange-soft: #FBE3CE;
+  --green: #2F8F5E;
+  --green-soft: #DCEFE3;
+  --gold-line: #E8722C;
+  --shadow: 0 4px 16px rgba(35, 48, 42, 0.08);
   font-size: 16px;
 }
 
@@ -30,12 +30,13 @@ html, body {
   padding: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
-  font-family: "Shippori Mincho", serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif;
+  font-weight: 700;
   margin: 0;
   color: var(--ink);
 }
@@ -50,21 +51,15 @@ button, input, select {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 39px,
-      rgba(201, 161, 92, 0.14) 40px
-    ),
-    var(--paper);
+  background: var(--paper);
 }
 
 /* ---------- ヘッダー ---------- */
 .app-header {
-  padding: 20px 20px 16px;
-  border-bottom: 2px solid var(--gold-line);
+  padding: 20px 20px 17px;
   background: var(--paper);
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, var(--orange), var(--green)) 1;
 }
 
 .app-header__title {
@@ -80,10 +75,10 @@ button, input, select {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--vermilion);
+  background: linear-gradient(135deg, var(--orange), var(--green));
   color: #fff;
   font-size: 15px;
-  font-family: "Shippori Mincho", serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif;
   flex-shrink: 0;
 }
 
@@ -107,14 +102,14 @@ button, input, select {
 }
 
 .app-header__balance {
-  font-family: "Shippori Mincho", serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--vermilion);
+  color: var(--orange);
 }
 
 .app-header__balance--assets {
-  color: var(--pine);
+  color: var(--green);
 }
 
 /* ---------- 画面切り替え ---------- */
@@ -207,7 +202,7 @@ button, input, select {
 .type-toggle__btn:focus-visible,
 .tabbar__btn:focus-visible,
 .btn:focus-visible {
-  outline: 2px solid var(--vermilion);
+  outline: 2px solid var(--orange);
   outline-offset: 1px;
 }
 
@@ -256,7 +251,7 @@ button, input, select {
 .link-btn {
   border: none;
   background: none;
-  color: var(--vermilion);
+  color: var(--orange);
   font-size: 0.84rem;
   padding: 2px 0;
   cursor: pointer;
@@ -278,7 +273,7 @@ button, input, select {
 }
 
 .btn--primary {
-  background: var(--vermilion);
+  background: linear-gradient(90deg, var(--orange), var(--green));
   color: #fff;
 }
 
@@ -318,7 +313,7 @@ button, input, select {
 }
 
 .month-summary strong {
-  font-family: "Shippori Mincho", serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif;
   font-size: 1.05rem;
   color: var(--ink);
 }
@@ -371,13 +366,13 @@ button, input, select {
 }
 
 .ledger-item__amount {
-  font-family: "Shippori Mincho", serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif;
   font-weight: 700;
   font-size: 1rem;
 }
 
-.ledger-item__amount.is-expense { color: var(--vermilion); }
-.ledger-item__amount.is-income { color: var(--pine); }
+.ledger-item__amount.is-expense { color: var(--orange); }
+.ledger-item__amount.is-income { color: var(--green); }
 
 .icon-btn {
   border: none;
@@ -397,8 +392,8 @@ button, input, select {
 
 /* ---------- 資産画面 ---------- */
 .asset-total-card {
-  background: var(--pine-soft);
-  border: 1px solid var(--pine);
+  background: var(--green-soft);
+  border: 1px solid var(--green);
   border-radius: 4px;
   padding: 20px;
   text-align: center;
@@ -414,10 +409,10 @@ button, input, select {
 
 .asset-total-card__value {
   display: block;
-  font-family: "Shippori Mincho", serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--pine);
+  color: var(--green);
   margin-bottom: 10px;
 }
 
@@ -465,7 +460,7 @@ button, input, select {
 }
 
 .category-breakdown .cb-name { flex: 1; }
-.category-breakdown .cb-amount { font-family: "Shippori Mincho", serif; font-weight: 700; }
+.category-breakdown .cb-amount { font-family: "M PLUS Rounded 1c", "Hiragino Sans", sans-serif; font-weight: 700; }
 
 /* ---------- タブバー ---------- */
 .tabbar {
@@ -477,7 +472,8 @@ button, input, select {
   max-width: 480px;
   display: flex;
   background: var(--card);
-  border-top: 2px solid var(--gold-line);
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, var(--green), var(--orange)) 1;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
@@ -500,7 +496,7 @@ button, input, select {
 }
 
 .tabbar__btn.is-active {
-  color: var(--vermilion);
+  color: var(--orange);
 }
 
 /* ---------- モーダル ---------- */
@@ -563,4 +559,3 @@ button, input, select {
 @media (min-width: 480px) {
   .app { border-left: 1px solid var(--card-line); border-right: 1px solid var(--card-line); }
 }
-
