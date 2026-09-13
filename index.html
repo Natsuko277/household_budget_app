@@ -155,6 +155,22 @@
       <p id="reportEmpty" class="empty-note" hidden>この月の支出記録はまだありません。</p>
     </section>
 
+    <!-- カレンダー画面 -->
+    <section id="screen-calendar" class="screen">
+      <div class="screen-head">
+        <h2>カレンダー</h2>
+      </div>
+      <div class="calendar-nav">
+        <button type="button" id="calPrevBtn" class="icon-btn calendar-nav__arrow" aria-label="前の月">‹</button>
+        <span id="calMonthLabel" class="calendar-nav__label"></span>
+        <button type="button" id="calNextBtn" class="icon-btn calendar-nav__arrow" aria-label="次の月">›</button>
+      </div>
+      <div id="calendarGrid" class="calendar-grid"></div>
+      <h3 id="calSelectedTitle" class="section-sub-title">日付を選んでください</h3>
+      <ul id="calDayList" class="ledger-list"></ul>
+      <p id="calDayEmpty" class="empty-note" hidden>この日の記録はありません。</p>
+    </section>
+
   </main>
 
   <nav class="tabbar">
@@ -169,6 +185,9 @@
     </button>
     <button class="tabbar__btn" data-screen="report">
       <span class="tabbar__icon">◐</span><span>レポート</span>
+    </button>
+    <button class="tabbar__btn" data-screen="calendar">
+      <span class="tabbar__icon">▦</span><span>カレンダー</span>
     </button>
   </nav>
 
@@ -197,4 +216,3 @@
 <script src="app.js"></script>
 </body>
 </html>
-
