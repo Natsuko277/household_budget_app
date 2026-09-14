@@ -416,16 +416,47 @@ button, input, select {
   margin-bottom: 10px;
 }
 
+.asset-total-card__note {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
 .asset-total-card__breakdown {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 18px;
+  gap: 10px 16px;
   font-size: 0.8rem;
   color: var(--ink-soft);
 }
 
 .asset-total-card__breakdown strong {
   color: var(--ink);
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.account-row__name {
+  width: 34%;
+  flex-shrink: 0;
+  padding: 9px 8px;
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.account-row__amount {
+  flex: 1;
+  margin: 0;
 }
 
 .chart-card {
@@ -560,3 +591,168 @@ button, input, select {
   .app { border-left: 1px solid var(--card-line); border-right: 1px solid var(--card-line); }
 }
 
+/* ---------- 予算(レポート画面) ---------- */
+
+.budget-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.budget-row {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+
+.budget-row__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.budget-row__spent {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  color: var(--ink-soft);
+}
+
+.budget-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--card-line);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.budget-bar__fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 999px;
+}
+
+.budget-bar__fill.is-over {
+  background: #C1352A;
+}
+
+.budget-row__input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.budget-row__input input {
+  width: 100px;
+  padding: 6px 8px;
+  border: 1px solid var(--card-line);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.budget-row__warn {
+  margin: 8px 0 0;
+  font-size: 0.76rem;
+  color: #C1352A;
+}
+
+/* ---------- カレンダー画面 ---------- */
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 6px;
+}
+
+.calendar-nav__arrow {
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+.calendar-nav__label {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  min-width: 120px;
+  text-align: center;
+}
+
+.calendar-summary {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 18px;
+}
+
+.calendar-grid__weekday {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+}
+
+.calendar-grid__weekday.is-sun { color: var(--orange); }
+.calendar-grid__weekday.is-sat { color: var(--green); }
+
+.calendar-grid__cell {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid var(--card-line);
+  border-radius: 6px;
+  background: var(--card);
+  cursor: pointer;
+  padding: 2px;
+  position: relative;
+}
+
+.calendar-grid__cell.is-empty {
+  border: none;
+  background: transparent;
+  cursor: default;
+}
+
+.calendar-grid__cell.is-today .calendar-grid__num {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.calendar-grid__cell.is-selected {
+  border: 2px solid var(--green);
+}
+
+.calendar-grid__num {
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+
+.calendar-grid__amount {
+  font-size: 0.58rem;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.calendar-grid__dot {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
